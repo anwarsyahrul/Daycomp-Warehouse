@@ -16,6 +16,7 @@
                     <th>Purchase Price</th>
                     <th>Sale Price</th>
                     <th>Date Added</th>
+                    <th>Supplier</th> <!-- New column for Supplier -->
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -35,6 +36,7 @@
                     <td>{{ $product->purchase_price }}</td>
                     <td>{{ $product->sale_price }}</td>
                     <td>{{ $product->date_in ? date('Y-m-d', strtotime($product->date_in)) : 'N/A' }}</td>
+                    <td>{{ $product->supplier->name ?? 'No Supplier' }}</td> <!-- Display supplier name -->
                     <td>
                         <a href="{{ route('products.qrcode', $product->id) }}" class="btn-action qr-btn">QR</a>
                         <a href="{{ route('products.edit', $product->id) }}" class="btn-action edit-btn">Edit</a>
@@ -111,7 +113,7 @@
     }
 
     .btn-action {
-        padding: 5px 12px;
+        padding: 3px 10px;
         margin: 2px;
         border: none;
         border-radius: 6px;

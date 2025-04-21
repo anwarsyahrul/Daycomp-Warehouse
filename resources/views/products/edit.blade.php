@@ -30,6 +30,18 @@
                 </select>
             </div>
 
+            <!-- Add Supplier Dropdown -->
+            <div class="mb-3">
+                <label for="supplier_id" class="form-label">Supplier</label>
+                <select name="supplier_id" id="supplier_id" class="form-control" required>
+                    @foreach ($suppliers as $supplier)
+                        <option value="{{ $supplier->id }}" {{ $product->supplier_id == $supplier->id ? 'selected' : '' }}>
+                            {{ $supplier->name }}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
+
             <div class="mb-3">
                 <label for="rack_id" class="form-label">Rack</label>
                 <select name="rack_id" id="rack_id" class="form-control" required>

@@ -15,5 +15,10 @@ class Shelf extends Model
     {
         return $this->belongsTo(Rack::class);
     }
+
+    public function product()
+    {
+        return $this->belongsTo(Product::class);
+    }
 }
 

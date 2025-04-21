@@ -15,4 +15,9 @@ class Rack extends Model
     {
         return $this->hasMany(Shelf::class);
     }
+
+    public function product()
+    {
+        return $this->belongsTo(Product::class);
+    }
 }

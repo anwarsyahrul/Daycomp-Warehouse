@@ -193,6 +193,14 @@
                     <i class="cil-home"></i> <span>Warehouses</span>
                 </a>
             </li>
+            
+            <!-- Add Suppliers menu below Warehouses -->
+            <li class="c-sidebar-nav-item">
+                <a class="c-sidebar-nav-link {{ request()->routeIs('suppliers.*') ? 'active' : '' }}" href="{{ route('suppliers.index') }}">
+                    <i class="cil-people"></i> <span>Suppliers</span>
+                </a>
+            </li>
+            
             <li class="c-sidebar-nav-item">
                 <a class="c-sidebar-nav-link {{ request()->routeIs('history.*') ? 'active' : '' }}" href="{{ route('history.index') }}">
                     <i class="cil-history"></i> <span>History</span>

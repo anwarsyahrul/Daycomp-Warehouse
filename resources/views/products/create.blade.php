@@ -47,6 +47,17 @@
             </div>
 
             <div class="mb-3">
+    <label for="supplier_id" class="form-label">Supplier</label>
+    <select name="supplier_id" id="supplier_id" class="form-control" required>
+        <option value="" disabled selected>Select a supplier</option>
+        @foreach ($suppliers as $supplier)
+            <option value="{{ $supplier->id }}">{{ $supplier->name }}</option>
+        @endforeach
+    </select>
+</div>
+
+
+            <div class="mb-3">
                 <label for="purchase_price" class="form-label">Purchase Price</label>
                 <input type="number" name="purchase_price" id="purchase_price" class="form-control" required>
             </div>

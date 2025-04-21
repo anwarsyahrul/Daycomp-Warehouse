@@ -10,6 +10,8 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\RackController;
 use App\Http\Controllers\ShelfController;
+use App\Http\Controllers\SupplierController;
+use App\Http\Controllers\PdfController;
 
 // Admin Login Routes
 Route::get('admin/login', [AdminController::class, 'showLoginForm'])->name('admin.login.form');
@@ -36,5 +38,10 @@ Route::middleware('checkAdminLogin')->group(function () {
     Route::resource('racks', RackController::class);
 Route::resource('shelves', ShelfController::class);
 Route::resource('products', ProductController::class);
+Route::resource('suppliers', SupplierController::class);
+Route::get('{product}/history', [ProductController::class, 'history'])->name('products.history');
+Route::get('export/history', [ProductController::class, 'exportHistoryToPDF'])->name('export.history');
+Route::get('generate-all-products/pdf', [PdfController::class, 'index'])->name('generate.all.products.pdf');
+Route::get('generate-product-and-stock/{productId}/{stockType}/pdf', [PdfController::class, 'generateProductAndStockPdf'])->name('generate.product.and.stock.pdf');
 });
 

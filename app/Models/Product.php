@@ -18,7 +18,10 @@ class Product extends Model
         'purchase_price',
         'sale_price',
         'date_in',
-        'image'  // Add this line
+        'image',
+        'rack_id',
+        'shelf_id',
+        'supplier_id',
     ];
     
     
@@ -49,5 +52,11 @@ public function shelf()
 {
     return $this->belongsTo(Shelf::class);
 }
+
+public function supplier()
+{
+    return $this->belongsTo(Supplier::class);
+}
+
 
 }
