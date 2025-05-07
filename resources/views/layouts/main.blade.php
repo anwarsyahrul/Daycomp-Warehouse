@@ -20,14 +20,16 @@
             padding: 0;
             overflow-x: hidden;
             display: flex;
+            background: #f0f4ff; /* very light blue */
         }
-
+    
         /* Sidebar Styling */
         .c-sidebar {
             width: 260px;
             height: 100vh;
-            background: linear-gradient(135deg, #2c3e50, #34495e);
-            color: white;
+            background: #1e40af; /* blue-800 */
+            background: linear-gradient(135deg, #3b82f6, #1e40af);
+            color: #ffffff;
             transition: width 0.3s ease-in-out;
             position: fixed;
             top: 0;
@@ -35,120 +37,121 @@
             display: flex;
             flex-direction: column;
         }
-
+    
         .c-sidebar.collapsed {
             width: 80px;
         }
-
+    
         .c-sidebar-brand {
             font-size: 1.5rem;
             font-weight: 600;
             text-align: center;
             padding: 15px;
-            color: white;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
             display: flex;
             align-items: center;
             justify-content: space-between;
-            transition: all 0.3s ease-in-out;
         }
-
+    
         .c-sidebar.collapsed .c-sidebar-brand span {
             display: none;
         }
-
-        /* Sidebar Toggle Button */
+    
         .c-sidebar-toggler {
             background: none;
             border: none;
-            color: white;
+            color: #ffffff;
             font-size: 1.5rem;
             cursor: pointer;
             transition: transform 0.3s ease-in-out;
         }
-
+    
         .c-sidebar.collapsed .c-sidebar-toggler {
             transform: rotate(180deg);
         }
-
-        /* Sidebar Navigation */
+    
         .c-sidebar-nav {
             flex: 1;
             overflow-y: auto;
             padding: 10px;
         }
-
+    
         .c-sidebar-nav-link {
             display: flex;
             align-items: center;
             padding: 12px 20px;
-            color: #dcdde1;
+            color: #dbeafe; /* blue-100 */
             text-decoration: none;
             border-radius: 8px;
-            transition: all 0.3s ease-in-out;
+            transition: background 0.3s, color 0.3s;
         }
-
+    
         .c-sidebar-nav-link i {
             font-size: 1.4rem;
             margin-right: 12px;
-            transition: margin-right 0.3s ease-in-out;
+            transition: margin-right 0.3s ease-in-out, color 0.3s;
         }
-
-        .c-sidebar-nav-link:hover, .c-sidebar-nav-link.active {
-            background: rgba(255, 255, 255, 0.1);
-            color: white;
+    
+        .c-sidebar-nav-link:hover,
+        .c-sidebar-nav-link.active {
+            background: rgba(255,255,255,0.15);
+            color: #ffffff;
         }
-
+    
+        .c-sidebar-nav-link:hover i,
+        .c-sidebar-nav-link.active i {
+            color: #ffffff;
+        }
+    
         .c-sidebar.collapsed .c-sidebar-nav-link i {
             margin-right: 0;
         }
-
+    
         .c-sidebar.collapsed .c-sidebar-nav-link span {
             display: none;
         }
-
-        /* Sidebar Footer */
+    
         .c-sidebar-footer {
             padding: 15px;
             text-align: center;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.3s ease-in-out;
+            border-top: 1px solid rgba(255,255,255,0.2);
         }
-
+    
         .btn-logout {
             width: 100%;
             padding: 10px;
-            background: #e74c3c;
-            color: white;
+            background: #2563eb; /* blue-600 */
+            color: #ffffff;
             border-radius: 6px;
             font-size: 1rem;
             text-decoration: none;
             display: block;
-            transition: all 0.3s ease-in-out;
+            transition: background 0.3s;
         }
-
+    
         .c-sidebar.collapsed .btn-logout {
             font-size: 0;
             padding: 10px 5px;
         }
-
+    
         .btn-logout:hover {
-            background: #c0392b;
+            background: #1e3a8a; /* blue-900 */
         }
-
-        /* Content Wrapper */
+    
         .c-wrapper {
             flex-grow: 1;
             margin-left: 260px;
             padding: 20px;
             transition: margin-left 0.3s ease-in-out;
             width: 100%;
+            background: #ffffff;
         }
-
+    
         .c-sidebar.collapsed + .c-wrapper {
             margin-left: 80px;
         }
-    </style>
+    </style>    
 </head>
 <body>
     <!-- Sidebar -->

@@ -31,15 +31,17 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'product_code' => 'required|unique:products|max:255',
-            'product_name' => 'required',
-            'category_id' => 'required|exists:categories,id',
-            'supplier_id' => 'required|exists:suppliers,id',  // Add supplier_id validation
-            'warehouse_id' => 'required|exists:warehouses,id',
-            'purchase_price' => 'required|numeric',
-            'sale_price' => 'required|numeric',
-            'product_date' => 'required|date',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',  // Validate image
+            'product_code' => 'required|unique:products|max:255',  // Ensure product code is unique and required
+'product_name' => 'required',  // Ensure product name is required
+'category_id' => 'required|exists:categories,id',  // Ensure category exists in the categories table  // Ensure supplier exists in the suppliers table
+'warehouse_id' => 'required|exists:warehouses,id',  // Ensure warehouse exists in the warehouses table
+'shelf_id' => 'required|exists:shelves,id',  // Ensure shelf exists in the shelves table
+'rack_id' => 'required|exists:racks,id',  // Ensure rack exists in the racks table
+'purchase_price' => 'required|numeric',  // Ensure purchase price is numeric
+'sale_price' => 'required|numeric',  // Ensure sale price is numeric
+'product_date' => 'required|date',  // Ensure product date is a valid date
+'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',  // Ensure image is valid if provided
+
         ]);
 
         $warehouse = Warehouse::find($validated['warehouse_id']);
@@ -54,8 +56,7 @@ class ProductController extends Controller
         Product::create([
             'product_code' => $validated['product_code'],
             'product_name' => $validated['product_name'],
-            'category_id' => $validated['category_id'],
-            'supplier_id' => $validated['supplier_id'],  // Save supplier_id
+            'category_id' => $validated['category_id'],  // Save supplier_id
             'warehouse_id' => $validated['warehouse_id'],
             'warehouse_name' => $warehouse->warehouse_name,
             'purchase_price' => $validated['purchase_price'],

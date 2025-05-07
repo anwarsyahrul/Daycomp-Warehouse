@@ -33,32 +33,50 @@ class StockController extends Controller
     }
 
     public function edit($id)
-{
-    $stock = Stock::findOrFail($id);
-    $products = Product::all(); // If stock is linked to products
-    return view('stocks.edit', compact('stock', 'products'));
-}
+    {
+        $stock = Stock::findOrFail($id);
+        $products = Product::all(); // If stock is linked to products
+        return view('stocks.edit', compact('stock', 'products'));
+    }
 
 
-public function update(Request $request, $id)
-{
-    $validated = $request->validate([
-        'product_id' => 'required|exists:products,id',
-        'quantity' => 'required|integer|min:0',
-    ]);
+    public function update(Request $request, $id)
+    {
+        $validated = $request->validate([
+            'product_id' => 'required|exists:products,id',
+            'quantity' => 'required|integer|min:0',
+        ]);
 
-    $stock = Stock::findOrFail($id);
-    $stock->update([
-        'product_id' => $validated['product_id'],
-        'quantity' => $validated['quantity'],
-    ]);
+        $stock = Stock::findOrFail($id);
+        $stock->update([
+            'product_id' => $validated['product_id'],
+            'quantity' => $validated['quantity'],
+        ]);
 
-    return redirect()->route('stocks.index')->with('success', 'Stock updated successfully!');
-}
+        return redirect()->route('stocks.index')->with('success', 'Stock updated successfully!');
+    }
     public function destroy(Stock $stock)
     {
         $stock->delete();
         return redirect()->route('stocks.index')->with('success', 'Stock deleted successfully!');
     }
+
+    public function reduceStock(Request $request, $id)
+    {
+        $validated = $request->validate([
+            'quantity' => 'required|integer|min:1',  // Ensure the quantity to reduce is valid
+        ]);
+
+        $stock = Stock::findOrFail($id);
+
+        // Reduce the stock quantity
+        $stock->quantity = max(0, $stock->quantity - $validated['quantity']); // Prevent negative stock
+
+        // Save the updated stock
+        $stock->save();
+
+        return redirect()->route('stocks.index')->with('success', 'Stock reduced successfully!');
+    }
+
 }
 

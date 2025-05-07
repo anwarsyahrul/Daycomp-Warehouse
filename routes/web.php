@@ -31,17 +31,19 @@ Route::middleware('checkAdminLogin')->group(function () {
     Route::get('products/{product}/qrcode', [ProductController::class, 'showQrCode'])->name('products.qrcode');
     Route::get('/products/{id}/details', [ProductController::class, 'showDetails'])->name('products.details');
     Route::get('/chart-data', [HomeController::class, 'getChartData'])->name('chart.data');
+    Route::post('/stocks/{id}/reduce', [StockController::class, 'reduceStock'])->name('stocks.reduce');
     Route::get('products/create', function () {
         $categories = App\Models\Category::all(); // Fetch categories directly in the route
         return view('products.create', compact('categories'));
     })->name('products.create');
     Route::resource('racks', RackController::class);
-Route::resource('shelves', ShelfController::class);
-Route::resource('products', ProductController::class);
-Route::resource('suppliers', SupplierController::class);
-Route::get('{product}/history', [ProductController::class, 'history'])->name('products.history');
-Route::get('export/history', [ProductController::class, 'exportHistoryToPDF'])->name('export.history');
-Route::get('generate-all-products/pdf', [PdfController::class, 'index'])->name('generate.all.products.pdf');
-Route::get('generate-product-and-stock/{productId}/{stockType}/pdf', [PdfController::class, 'generateProductAndStockPdf'])->name('generate.product.and.stock.pdf');
+    Route::resource('shelves', ShelfController::class);
+    Route::resource('products', ProductController::class);
+    Route::resource('suppliers', SupplierController::class);
+    Route::get('{product}/history', [ProductController::class, 'history'])->name('products.history');
+    Route::get('export/history', [ProductController::class, 'exportHistoryToPDF'])->name('export.history');
+    Route::get('generate-all-products/pdf', [PdfController::class, 'index'])->name('generate.all.products.pdf');
+    Route::get('generate-product-and-stock/{productId}/{stockType}/pdf', [PdfController::class, 'generateProductAndStockPdf'])->name('generate.product.and.stock.pdf');
 });
+
 
