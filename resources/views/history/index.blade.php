@@ -38,7 +38,8 @@
                         <td>{{ $product->stock->quantity ?? '0' }}</td>
                         <td>
                             <!-- Button to generate PDF for this product -->
-                            <a href="{{ route('generate.product.and.stock.pdf', ['productId' => $product->id, 'stockType' => 'out']) }}" class="btn btn-secondary btn-sm">Export PDF</a>
+                            <a href="{{ route('generate.product.and.stock.pdf', ['productId' => $product->id, 'stockType' => 'in']) }}" class="btn btn-primary btn-sm">Export PDF Stok Masuk</a>
+                            <a href="{{ route('generate.product.and.stock.pdf', ['productId' => $product->id, 'stockType' => 'out']) }}" class="btn btn-secondary btn-sm">Export PDF Stok Keluar</a>
                         </td>
                     </tr>
                 @endforeach
